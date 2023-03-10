@@ -1,6 +1,6 @@
 # ![Tilez-Logo](https://github.com/spren9er/tilez/blob/main/docs/images/tilez_logo.svg?raw=true) tilez - apache echarts
 
-_ECharts_ tile for usage with Svelte layout engine [**_tilez_**](https://github.com/spren9er/tilez).
+_Apache ECharts_ tile for usage with Svelte layout engine [**_tilez_**](https://github.com/spren9er/tilez).
 
 ## Installation
 
