@@ -2,6 +2,8 @@
 	import { getContext, hasContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 
+	import type { Table } from 'apache-arrow';
+
 	import { getTileContext } from 'tilez';
 
 	import type { EChartsOption } from 'echarts';
@@ -10,6 +12,7 @@
 	import { EChartsSVGConfig } from '$lib/echarts/eChartsSVGConfig';
 
 	export let option: EChartsOption;
+	export let data: Table | Table[] | undefined = undefined;
 
 	let echarts: EChartsSVGConfig;
 
@@ -26,7 +29,7 @@
 	const { specs } = getTileContext();
 
 	$: if (echarts && $specs) {
-		chart = echarts.build(option, $specs.width, $specs.height);
+		chart = echarts.build(option, $specs.width, $specs.height, data);
 		svg = chart.render();
 	}
 </script>

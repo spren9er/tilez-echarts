@@ -15,6 +15,7 @@ npm install tilez-echarts
 You can use _Apache ECharts_ tile for tile types `'html'` and `'svg'`. Component **EChartsTile** has following props:
 
 - **_options_** _Apache ECharts_ configuration
+- **_data_** _Apache Arrow_ table(s) [optional]
 
 ### HTML Tiles
 
@@ -121,6 +122,13 @@ For SVG tiles you can use **EChartsSVGConfig** class only for theme configuratio
   <EChartsTile {option} />
 </Tile>
 ```
+
+## Support of Arrow Datasets
+
+By default, you add inline data to `option` of **EChartsTile**.
+However, you can also pass Apache Arrow table(s) to **EChartsTile** via `data` props.
+Arrow table(s) will be converted to ECharts dataset(s), which will be added to `option` automatically.
+See `arrow` route for an example.
 
 ## SSR
 

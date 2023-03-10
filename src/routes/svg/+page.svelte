@@ -34,24 +34,9 @@
 				barWidth: '80%',
 			},
 		],
-		tooltip: {
-			trigger: 'axis',
-			axisPointer: {
-				type: 'shadow',
-			},
-		},
 	};
 
 	const areaOption: EChartsOption = {
-		tooltip: {
-			trigger: 'axis',
-			axisPointer: {
-				type: 'cross',
-				label: {
-					backgroundColor: '#6a7985',
-				},
-			},
-		},
 		legend: {
 			data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine'],
 		},

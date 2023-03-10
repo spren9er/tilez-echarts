@@ -1,7 +1,8 @@
 <script lang="ts">
+	import { getContext, hasContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 
-	import { getContext, hasContext } from 'svelte';
+	import type { Table } from 'apache-arrow';
 
 	import { getTileContext } from 'tilez';
 
@@ -10,6 +11,7 @@
 	import type { EChartsHTMLChart } from '$lib/echarts/eChartsHTMLChart';
 
 	export let option: EChartsOption;
+	export let data: Table | Table[] | undefined = undefined;
 
 	if (!hasContext('echarts'))
 		throw new Error(
@@ -24,7 +26,11 @@
 	const { specs, element } = getTileContext();
 
 	$: if ($element && $echarts) {
-		chart = $echarts.build($element as HTMLElement, option as EChartsOption);
+		chart = $echarts.build(
+			$element as HTMLElement,
+			option as EChartsOption,
+			data,
+		);
 	}
 
 	$: if (chart && $specs) {

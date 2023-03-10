@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Table } from 'apache-arrow';
 	import type { EChartsOption } from 'echarts';
 
 	import { getTileContext } from 'tilez';
@@ -9,6 +10,7 @@
 	const { specs } = getTileContext();
 
 	export let option: EChartsOption;
+	export let data: Table | Table[] | undefined = undefined;
 
 	const typeMapping = {
 		html: EChartsTileHTML,
@@ -24,5 +26,5 @@
 </script>
 
 {#if $specs}
-	<svelte:component this={componentFor($specs.type)} {option} />
+	<svelte:component this={componentFor($specs.type)} {option} {data} />
 {/if}

@@ -1,3 +1,4 @@
+import type { Table } from 'apache-arrow';
 import type { EChartsInitOpts } from './eChartsTypes';
 
 import { type EChartsOption, init } from 'echarts';
@@ -8,9 +9,10 @@ export class EChartsSVGChart extends EChartsBaseChart {
   public constructor(
     option: EChartsOption,
     initOptions: EChartsInitOpts,
+    data?: Table | Table[],
     theme?: string,
   ) {
-    super(null, option, initOptions, theme);
+    super(null, option, initOptions, data, theme);
   }
 
   public init(

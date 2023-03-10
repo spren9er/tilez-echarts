@@ -1,3 +1,4 @@
+import type { Table } from 'apache-arrow';
 import type { EChartsOption } from 'echarts';
 import type { EChartsInitOpts, ThemeOption } from './eChartsTypes';
 
@@ -12,10 +13,16 @@ export class EChartsSVGConfig extends EChartsBaseConfig {
     this.initOptions.ssr = true;
   }
 
-  public build(option: EChartsOption, width: number, height: number) {
+  public build(
+    option: EChartsOption,
+    width: number,
+    height: number,
+    data?: Table | Table[],
+  ) {
     return new EChartsSVGChart(
       option,
       { ...this.initOptions, width, height },
+      data,
       this.theme,
     );
   }
