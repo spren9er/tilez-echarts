@@ -4,6 +4,8 @@
 	import { onMount, setContext } from 'svelte';
 	import { type Writable, writable } from 'svelte/store';
 
+	import { tableFromJSON } from 'apache-arrow';
+
 	import { Tile, HTile, VTile } from 'tilez';
 
 	import type { EChartsOption } from 'echarts';
@@ -12,6 +14,7 @@
 	import EChartsTile from '$lib/components/EChartsTile.svelte';
 
 	import {
+		DatasetComponent,
 		GridComponent,
 		LegendComponent,
 		TooltipComponent,
@@ -138,37 +141,42 @@
 		],
 	};
 
+	const scatterData = tableFromJSON([
+		{ x: 10.0, y: 8.04 },
+		{ x: 8.07, y: 6.95 },
+		{ x: 13.0, y: 7.58 },
+		{ x: 9.05, y: 8.81 },
+		{ x: 11.0, y: 8.33 },
+		{ x: 14.0, y: 7.66 },
+		{ x: 13.4, y: 6.81 },
+		{ x: 10.0, y: 6.33 },
+		{ x: 14.0, y: 8.96 },
+		{ x: 12.5, y: 6.82 },
+		{ x: 9.15, y: 7.2 },
+		{ x: 11.5, y: 7.2 },
+		{ x: 3.03, y: 4.23 },
+		{ x: 12.2, y: 7.83 },
+		{ x: 2.02, y: 4.47 },
+		{ x: 1.05, y: 3.33 },
+		{ x: 4.05, y: 4.96 },
+		{ x: 6.03, y: 7.24 },
+		{ x: 12.0, y: 6.26 },
+		{ x: 12.0, y: 8.84 },
+		{ x: 7.08, y: 5.82 },
+		{ x: 5.02, y: 5.68 },
+	]);
+
 	const scatterOption: EChartsOption = {
 		xAxis: {},
 		yAxis: {},
 		series: [
 			{
 				symbolSize: 20,
-				data: [
-					[10.0, 8.04],
-					[8.07, 6.95],
-					[13.0, 7.58],
-					[9.05, 8.81],
-					[11.0, 8.33],
-					[14.0, 7.66],
-					[13.4, 6.81],
-					[10.0, 6.33],
-					[14.0, 8.96],
-					[12.5, 6.82],
-					[9.15, 7.2],
-					[11.5, 7.2],
-					[3.03, 4.23],
-					[12.2, 7.83],
-					[2.02, 4.47],
-					[1.05, 3.33],
-					[4.05, 4.96],
-					[6.03, 7.24],
-					[12.0, 6.26],
-					[12.0, 8.84],
-					[7.08, 5.82],
-					[5.02, 5.68],
-				],
 				type: 'scatter',
+				encode: {
+					x: 'x',
+					y: 'y',
+				},
 			},
 		],
 	};
@@ -179,6 +187,7 @@
 				BarChart,
 				LineChart,
 				ScatterChart,
+				DatasetComponent,
 				GridComponent,
 				LegendComponent,
 				TooltipComponent,
@@ -194,7 +203,7 @@
 				<EChartsTile option={barOption} />
 			</Tile>
 			<Tile>
-				<EChartsTile option={scatterOption} />
+				<EChartsTile option={scatterOption} data={scatterData} />
 			</Tile>
 		</VTile>
 		<VTile>
