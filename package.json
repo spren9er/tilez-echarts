@@ -1,6 +1,6 @@
 {
   "name": "tilez-echarts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Torsten Sprenger <mail@spren9er.de>",
   "description": "Apache ECharts for Svelte layout engine tilez",
   "keywords": [
