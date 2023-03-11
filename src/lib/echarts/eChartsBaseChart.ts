@@ -5,6 +5,7 @@ import { DataToJSON } from '$lib/utils/dataToJSON';
 
 export abstract class EChartsBaseChart {
   protected chart: ECharts;
+  protected option: EChartsOption;
 
   constructor(
     element: HTMLElement | null,
@@ -13,8 +14,14 @@ export abstract class EChartsBaseChart {
     data?: EChartsData,
     theme?: string,
   ) {
+    this.option = option;
+
     this.chart = this.init(element, initOptions, theme);
-    this.chart.setOption(this.mergeOption(option, data));
+    this.chart.setOption(this.mergeData(option, data));
+  }
+
+  public updateData(data: EChartsData) {
+    this.chart.setOption(this.mergeData(this.option, data));
   }
 
   public setOption(option: EChartsOption) {
@@ -27,10 +34,7 @@ export abstract class EChartsBaseChart {
     theme?: string,
   ): ECharts;
 
-  private mergeOption(
-    option: EChartsOption,
-    data?: EChartsData,
-  ): EChartsOption {
+  private mergeData(option: EChartsOption, data?: EChartsData): EChartsOption {
     if (!data) return option;
 
     const dataset = new DataToJSON(data).call();
