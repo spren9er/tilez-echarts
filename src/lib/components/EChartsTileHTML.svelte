@@ -26,11 +26,15 @@
 	const { specs, element } = getTileContext();
 
 	$: if ($element && $echarts) {
-		chart = $echarts.build(
-			$element as HTMLElement,
-			option as EChartsOption,
-			data,
-		);
+		if (chart && data) {
+			chart.updateData(data);
+		} else {
+			chart = $echarts.build(
+				$element as HTMLElement,
+				option as EChartsOption,
+				data,
+			);
+		}
 	}
 
 	$: if (chart && $specs) {
