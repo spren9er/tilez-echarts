@@ -1,6 +1,5 @@
-import type { Table } from 'apache-arrow';
 import type { EChartsOption } from 'echarts';
-import type { EChartsInitOpts, ThemeOption } from './eChartsTypes';
+import type { EChartsData, EChartsInitOpts, ThemeOption } from './eChartsTypes';
 
 import { EChartsBaseConfig } from './eChartsBaseConfig';
 import { EChartsSVGChart } from './eChartsSVGChart';
@@ -17,7 +16,7 @@ export class EChartsSVGConfig extends EChartsBaseConfig {
     option: EChartsOption,
     width: number,
     height: number,
-    data?: Table | Table[],
+    data?: EChartsData,
   ) {
     return new EChartsSVGChart(
       option,

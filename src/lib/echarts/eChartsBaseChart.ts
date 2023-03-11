@@ -1,8 +1,7 @@
-import type { Table } from 'apache-arrow';
 import type { ECharts, EChartsOption } from 'echarts';
-import type { EChartsInitOpts } from './eChartsTypes';
+import type { EChartsData, EChartsInitOpts } from './eChartsTypes';
 
-import { ArrowDataToJSON } from '$lib/utils/arrowToJSON';
+import { DataToJSON } from '$lib/utils/dataToJSON';
 
 export abstract class EChartsBaseChart {
   protected chart: ECharts;
@@ -11,7 +10,7 @@ export abstract class EChartsBaseChart {
     element: HTMLElement | null,
     option: EChartsOption,
     initOptions: EChartsInitOpts,
-    data?: Table | Table[],
+    data?: EChartsData,
     theme?: string,
   ) {
     this.chart = this.init(element, initOptions, theme);
@@ -30,11 +29,11 @@ export abstract class EChartsBaseChart {
 
   private mergeOption(
     option: EChartsOption,
-    data?: Table | Table[],
+    data?: EChartsData,
   ): EChartsOption {
     if (!data) return option;
 
-    const dataset = new ArrowDataToJSON(data).call();
+    const dataset = new DataToJSON(data).call();
 
     // @ts-ignore
     return { ...option, dataset };

@@ -2,7 +2,7 @@
 	import { getContext, hasContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 
-	import type { Table } from 'apache-arrow';
+	import type { EChartsData } from '$lib/echarts/eChartsTypes';
 
 	import { getTileContext } from 'tilez';
 
@@ -11,7 +11,7 @@
 	import type { EChartsHTMLChart } from '$lib/echarts/eChartsHTMLChart';
 
 	export let option: EChartsOption;
-	export let data: Table | Table[] | undefined = undefined;
+	export let data: EChartsData | undefined = undefined;
 
 	if (!hasContext('echarts'))
 		throw new Error(

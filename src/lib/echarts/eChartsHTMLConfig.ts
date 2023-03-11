@@ -1,6 +1,10 @@
-import type { Table } from 'apache-arrow';
 import type { EChartsOption } from 'echarts';
-import type { EChartsInitOpts, Extensions, ThemeOption } from './eChartsTypes';
+import type {
+  EChartsData,
+  EChartsInitOpts,
+  Extensions,
+  ThemeOption,
+} from './eChartsTypes';
 
 import { use } from 'echarts/core';
 import { CanvasRenderer, SVGRenderer } from 'echarts/renderers';
@@ -22,7 +26,7 @@ export class EChartsHTMLConfig extends EChartsBaseConfig {
   public build(
     element: HTMLElement | HTMLCanvasElement | null,
     option: EChartsOption,
-    data?: Table | Table[],
+    data?: EChartsData,
   ) {
     return new EChartsHTMLChart(
       element as HTMLElement,

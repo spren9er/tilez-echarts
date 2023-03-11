@@ -1,5 +1,8 @@
+import { Table } from 'apache-arrow';
 import { registerTheme, use } from 'echarts/core';
 
+export type JSONValue = string | number | boolean | { [x: string]: JSONValue };
+export type EChartsData = Table | Table[] | JSONValue[] | null;
 export type EChartsInitOpts = {
   locale?: string;
   renderer?: 'canvas' | 'svg';

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Table } from 'apache-arrow';
+	import type { EChartsData } from '$lib/echarts/eChartsTypes';
 	import type { EChartsOption } from 'echarts';
 
 	import { getTileContext } from 'tilez';
@@ -10,7 +10,7 @@
 	const { specs } = getTileContext();
 
 	export let option: EChartsOption;
-	export let data: Table | Table[] | undefined = undefined;
+	export let data: EChartsData | undefined = undefined;
 
 	const typeMapping = {
 		html: EChartsTileHTML,
