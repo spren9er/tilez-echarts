@@ -19,10 +19,11 @@ You can use _Apache ECharts_ tile for tile types `'html'` and `'svg'`. Component
 
 ### HTML Tiles
 
-For HTML tiles, there is a context necessary which specifies which components of _ECharts_ should be used (treeshaking support). Also, you can set up a _ECharts_ theme there.
+For HTML tiles, there is a context necessary which specifies which components of _ECharts_ should be used (treeshaking support). Also, you can set up an _ECharts_ theme there.
 
 ```html
 <script lang="ts">
+  // +page.svelte
   import { onMount, setContext } from 'svelte';
   import { type Writable, writable } from 'svelte/store';
 
