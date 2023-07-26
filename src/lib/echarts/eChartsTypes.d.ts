@@ -1,4 +1,4 @@
-import { Table } from 'apache-arrow';
+import type { Table } from 'apache-arrow';
 import { registerTheme, use } from 'echarts/core';
 
 export type JSONValue = string | number | boolean | { [x: string]: JSONValue };

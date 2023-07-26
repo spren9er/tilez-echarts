@@ -1,6 +1,6 @@
 {
   "name": "tilez-echarts",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "author": "Torsten Sprenger <mail@spren9er.de>",
   "description": "Apache ECharts for Svelte layout engine tilez",
   "keywords": [
@@ -19,6 +19,7 @@
   "bugs": {
     "url": "https://github.com/spren9er/tilez-echarts/issues"
   },
+  "main": "dist/index.js",
   "files": [
     "dist"
   ],
@@ -39,29 +40,29 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "peerDependencies": {
-    "svelte": "^3.55.1"
+    "svelte": "^4.1.1"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "^2.0.0",
-    "@sveltejs/kit": "^1.11.0",
-    "@sveltejs/package": "^2.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.54.1",
-    "@typescript-eslint/parser": "^5.54.1",
-    "eslint": "^8.36.0",
-    "eslint-config-prettier": "^8.7.0",
-    "eslint-plugin-svelte3": "^4.0.0",
-    "prettier": "^2.8.4",
-    "prettier-plugin-svelte": "^2.9.0",
-    "publint": "^0.1.10",
-    "svelte-check": "^3.1.2",
-    "tslib": "^2.5.0",
-    "typescript": "^4.9.5",
-    "vite": "^4.1.4"
+    "@sveltejs/adapter-auto": "^2.1.0",
+    "@sveltejs/kit": "^1.22.3",
+    "@sveltejs/package": "^2.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.45.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-svelte": "^2.32.4",
+    "prettier": "^3.0.0",
+    "prettier-plugin-svelte": "^3.0.1",
+    "publint": "^0.1.16",
+    "svelte-check": "^3.4.6",
+    "tslib": "^2.6.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.7"
   },
   "dependencies": {
-    "apache-arrow": "^11.0.0",
+    "apache-arrow": "^12.0.1",
     "echarts": "^5.4.1",
-    "tilez": "^0.0.32"
+    "tilez": "^0.1.0"
   },
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
