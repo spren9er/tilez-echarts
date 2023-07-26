@@ -34,6 +34,7 @@
 				barWidth: '80%',
 			},
 		],
+		animationDuration: 0,
 	};
 
 	const areaOption: EChartsOption = {
@@ -114,6 +115,7 @@
 				data: [820, 932, 901, 934, 1290, 1330, 1320],
 			},
 		],
+		animationDuration: 0,
 	};
 
 	const scatterOption: EChartsOption = {
@@ -149,6 +151,7 @@
 				type: 'scatter',
 			},
 		],
+		animationDuration: 0,
 	};
 
 	onMount(() => {
