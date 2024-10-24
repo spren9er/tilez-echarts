@@ -5,7 +5,7 @@ import { init } from 'echarts/core';
 import { EChartsBaseChart } from './eChartsBaseChart';
 
 export class EChartsHTMLChart extends EChartsBaseChart {
-  // @ts-ignore
+  // @ts-expect-error
   public init(
     element: HTMLElement | null,
     initOptions: EChartsInitOpts,

@@ -1,39 +1,42 @@
 <script lang="ts">
-	import { getContext, hasContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
+  import { getContext, hasContext } from 'svelte';
+  import type { Writable } from 'svelte/store';
 
-	import type { EChartsData } from '$lib/echarts/eChartsTypes';
+  import type { EChartsData } from '$lib/echarts/eChartsTypes';
 
-	import { getTileContext } from 'tilez';
+  import { getTileContext } from 'tilez';
 
-	import type { EChartsOption } from 'echarts';
+  import type { EChartsOption } from 'echarts';
 
-	import type { EChartsSVGChart } from '$lib/echarts/eChartsSVGChart';
-	import { EChartsSVGConfig } from '$lib/echarts/eChartsSVGConfig';
+  import { EChartsSVGConfig } from '$lib/echarts/eChartsSVGConfig';
 
-	export let option: EChartsOption;
-	export let data: EChartsData | undefined = undefined;
+  interface Props {
+    option: EChartsOption;
+    data?: EChartsData | undefined;
+  }
 
-	let echarts: EChartsSVGConfig;
+  let { option, data = undefined }: Props = $props();
 
-	if (hasContext('echarts')) {
-		const store: Writable<EChartsSVGConfig> = getContext('echarts');
-		store.subscribe((Config: EChartsSVGConfig) => (echarts = Config));
-	} else {
-		echarts = new EChartsSVGConfig();
-	}
+  let echarts: EChartsSVGConfig | undefined = $state();
 
-	let chart: EChartsSVGChart;
-	let svg: string;
+  if (hasContext('echarts')) {
+    const store: Writable<EChartsSVGConfig> = getContext('echarts');
+    store.subscribe((Config: EChartsSVGConfig) => (echarts = Config));
+  } else {
+    echarts = new EChartsSVGConfig();
+  }
 
-	const { specs } = getTileContext();
+  const { specs } = getTileContext();
 
-	$: if (echarts && $specs) {
-		chart = echarts.build(option, $specs.width, $specs.height, data);
-		svg = chart.render();
-	}
+  let svg = $derived.by(() => {
+    if (echarts && $specs) {
+      const { width, height } = $specs;
+      const chart = echarts.build(option, width, height, data);
+      return chart.render();
+    }
+  });
 </script>
 
 {#if svg}
-	{@html svg}
+  {@html svg}
 {/if}

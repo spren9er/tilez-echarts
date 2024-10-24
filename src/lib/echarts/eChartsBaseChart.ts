@@ -39,7 +39,7 @@ export abstract class EChartsBaseChart {
 
     const dataset = new DataToJSON(data).call();
 
-    // @ts-ignore
+    // @ts-expect-error
     return { ...option, dataset };
   }
 }

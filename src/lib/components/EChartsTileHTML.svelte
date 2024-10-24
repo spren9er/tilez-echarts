@@ -1,45 +1,52 @@
 <script lang="ts">
-	import { getContext, hasContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
+  import { getContext, hasContext } from 'svelte';
+  import type { Writable } from 'svelte/store';
 
-	import type { EChartsData } from '$lib/echarts/eChartsTypes';
+  import type { EChartsData } from '$lib/echarts/eChartsTypes';
 
-	import { getTileContext } from 'tilez';
+  import { getTileContext } from 'tilez';
 
-	import type { EChartsOption } from 'echarts';
-	import type { EChartsHTMLConfig } from '$lib/echarts/eChartsHTMLConfig';
-	import type { EChartsHTMLChart } from '$lib/echarts/eChartsHTMLChart';
+  import type { EChartsOption } from 'echarts';
+  import type { EChartsHTMLConfig } from '$lib/echarts/eChartsHTMLConfig';
+  import type { EChartsHTMLChart } from '$lib/echarts/eChartsHTMLChart';
 
-	export let option: EChartsOption;
-	export let data: EChartsData | undefined = undefined;
+  interface Props {
+    option: EChartsOption;
+    data?: EChartsData | undefined;
+  }
 
-	if (!hasContext('echarts'))
-		throw new Error(
-			"ECharts tile requires a 'echarts' context containing an ECharts HTML Config!",
-		);
+  let { option, data = undefined }: Props = $props();
 
-	const echarts: Writable<EChartsHTMLConfig> = getContext('echarts');
+  if (!hasContext('echarts'))
+    throw new Error(
+      "ECharts tile requires a 'echarts' context containing an ECharts HTML Config!",
+    );
 
-	let init = true;
-	let chart: EChartsHTMLChart;
+  const echarts: Writable<EChartsHTMLConfig> = getContext('echarts');
 
-	const { specs, element } = getTileContext();
+  let chart: EChartsHTMLChart | undefined;
 
-	$: if ($element && $echarts) {
-		if (chart && data) {
-			chart.updateData(data);
-		} else {
-			chart = $echarts.build(
-				$element as HTMLElement,
-				option as EChartsOption,
-				data,
-			);
-		}
-	}
+  const { specs, element } = getTileContext();
 
-	$: if (chart && $specs) {
-		if (!init) chart.resize($specs.width, $specs.height);
+  $effect(() => {
+    if ($element && $echarts) {
+      if (chart && data) {
+        chart.updateData(data);
+      } else {
+        chart = $echarts.build(
+          $element as HTMLElement,
+          option as EChartsOption,
+          data,
+        );
+      }
+    }
+  });
 
-		init = false;
-	}
+  $effect(() => {
+    if ($specs) {
+      const { width, height } = $specs;
+
+      if (chart) chart.resize(width, height);
+    }
+  });
 </script>
